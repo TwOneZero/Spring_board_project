@@ -1,0 +1,38 @@
+debug: false
+# actuator 의 endpoint 모두 활성화
+management.endpoints.web.exposure.include: "*"
+
+logging:
+  level:
+    #log level 을 명시
+    com.study.Springboardproject: debug
+    #req-res 만 보기
+    org.springframework.web.servlet: debug
+    # jpa 사용시 쿼리 로그를 디버깅
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/board
+    username: twonezero
+    password: testpassword!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    #test용 db를 생성할 수 있게 함
+    defer-datasource-initialization: true
+    #entity를 보고 ddl 자동 생성
+    hibernate.ddl-auto: create
+    #    open-in-view: false
+    #쿼리 보여주기
+    show-sql: true
+    #추가 jpa 프로퍼티 설정
+    properties:
+      #쿼리문 포맷팅
+      hibernate.format_sql: true
+      #jpa 에서 복잡한 쿼리를 사용할 때 한번에 select
+      hibernate.default_batch_fetch_size: 100
+  #im-memory 콘솔 비활성화
+  h2.console.enabled: false
+  #resource data 언제 작동시킬건지
+  sql.init.mode: always
+  #thymeleaf.cache: false
